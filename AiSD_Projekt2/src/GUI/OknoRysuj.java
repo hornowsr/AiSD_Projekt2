@@ -45,25 +45,47 @@ public class OknoRysuj extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private double kat;
+
     public void rysuj(BazaMiast baza) {
         this.czysc();
-        int n = baza.liczbaMiast();
         Graphics g = getGraphics();
         g.setColor(Color.black);
 
+///////////////////////////////////CHWILOWE
+        String nazwa = "Warszawa";
+        int n = baza.liczbaMiast();
+        n = 5;
+        int polaczenia[] = {0, 1, 2, 3, 4};
+///////////////////////////////////
 
         if (n == 1) {
-            this.zaznaczMiasto(this.getWidth() / 2, this.getHeight() / 2);
+            this.zaznaczMiasto(this.getWidth() / 2, this.getHeight() / 2, nazwa);
             return;
         }
 
-        double kat = 360 / n;
-        System.out.println(getWidth() + " " + getHeight());
+        kat = 360 / n;
+        //zaznaczanie miast
         for (int i = 0; i < n; i++) {
-            this.zaznaczMiasto(wyznaczX(kat * i), wyznaczY(kat * i));
-            System.out.println("X: " + wyznaczX(kat * i) + " |Y: " + wyznaczY(kat * i));
+            this.zaznaczMiasto(wyznaczX(i), wyznaczY(i), nazwa);
         }
-        
+
+        //zaznaczenie połączeń między miastami
+        for (int i = 0; i < n; i++) {
+            int j = 0;
+            while (j < polaczenia.length) {
+                zaznaczPolaczenie(polaczenia[i], polaczenia[j]);
+                j++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            int j = 0;
+            while (j < polaczenia.length) {
+                zaznaczKierunek(polaczenia[i], polaczenia[j]);
+                j++;
+            }
+        }
+
     }
 
     private void czysc() {
@@ -72,26 +94,53 @@ public class OknoRysuj extends javax.swing.JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
     }
 
-    private void zaznaczMiasto(int x, int y) {
+    private void zaznaczMiasto(int x, int y, String miasto) {
         Graphics g = getGraphics();
         g.setColor(Color.blue);
         g.fillOval(x, y, 10, 10);
+        g.drawString(miasto, x, y);
     }
 
     private int promien() {
         if (this.getWidth() < this.getHeight()) {
-            return this.getWidth() / 2 - 20;
+            return this.getWidth() / 2 - 30;
         } else {
-            return this.getHeight() / 2 - 20;
+            return this.getHeight() / 2 - 30;
         }
     }
 
-    private int wyznaczX(double kat) {
-        return (this.getWidth() / 2) + (int) (promien() * Math.sin(Math.PI * kat / 180));
+    private int wyznaczX(double i) {
+        return (this.getWidth() / 2) + (int) (promien() * Math.sin(Math.PI * kat * i / 180));
     }
 
-    private int wyznaczY(double kat) {
-        return (this.getHeight() / 2) - (int) (promien() * Math.cos(Math.PI * kat / 180));
+    private int wyznaczY(double i) {
+        return (this.getHeight() / 2) - (int) (promien() * Math.cos(Math.PI * kat * i / 180));
+    }
+
+    private void zaznaczPolaczenie(int skad, int dokad) {
+        int x1, x2, y1, y2;
+        x1 = wyznaczX(skad) + 5;
+        y1 = wyznaczY(skad) + 5;
+        x2 = wyznaczX(dokad) + 5;
+        y2 = wyznaczY(dokad) + 5;
+        Graphics g = getGraphics();
+        g.setColor(Color.green);
+        g.drawLine(x1, y1, x2, y2);
+    }
+
+    private void zaznaczKierunek(int skad, int dokad) {
+        int x1, x2, y1, y2;
+        x1 = wyznaczX(skad) + 5;
+        y1 = wyznaczY(skad) + 5;
+        x2 = wyznaczX(dokad) + 5;
+        y2 = wyznaczY(dokad) + 5;
+        x1 = (int) (x1 + 0.9 * (x2 - x1));
+        y1 = (int) (y1 + 0.9 * (y2 - y1));
+        Graphics g = getGraphics();
+        g.setColor(Color.red);
+        g.drawLine(x1, y1, x2, y2);
+        g.drawLine(x1 - 1, y1 - 1, x2 - 1, y2 - 1);
+        g.drawLine(x1 + 1, y1 + 1, x2 + 1, y2 + 1);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
