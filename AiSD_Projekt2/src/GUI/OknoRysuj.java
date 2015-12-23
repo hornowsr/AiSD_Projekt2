@@ -53,21 +53,23 @@ public class OknoRysuj extends javax.swing.JPanel {
         g.setColor(Color.black);
 
 ///////////////////////////////////CHWILOWE
-        String nazwa = "Warszawa";
+        String [] nazwy={"Warszawa" , "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce" , "Katowice" , "Gdynia",
+        "Łosice", "Kraków", "","","","","","","","","",""};
+       // String nazwa = "Warszawa";
         int n = baza.liczbaMiast();
-        n = 5;
-        int polaczenia[] = {0, 1, 2, 3, 4};
+       // n = 6;
+        int polaczenia[] = {0, 1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 ///////////////////////////////////
 
         if (n == 1) {
-            this.zaznaczMiasto(this.getWidth() / 2, this.getHeight() / 2, nazwa);
+            this.zaznaczMiasto(this.getWidth() / 2, this.getHeight() / 2, nazwy[0]);
             return;
         }
 
         kat = 360 / n;
         //zaznaczanie miast
         for (int i = 0; i < n; i++) {
-            this.zaznaczMiasto(wyznaczX(i), wyznaczY(i), nazwa);
+            this.zaznaczMiasto(wyznaczX(i), wyznaczY(i), nazwy[i]);
         }
 
         //zaznaczenie połączeń między miastami
