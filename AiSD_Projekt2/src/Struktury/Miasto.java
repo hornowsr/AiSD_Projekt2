@@ -11,4 +11,20 @@ package Struktury;
  */
 public class Miasto {
     
+    private Polaczenie [] polaczenia;
+    private int postoj;
+    
+    public Miasto(int n, int postoj){
+        polaczenia = new Polaczenie[n];
+        this.postoj=postoj;
+    }
+    
+    public Polaczenie[] polaczeniaW(){
+        return this.polaczenia;
+    }
+    
+    public int postujW(){
+        return this.postoj;
+    }
+    
 }

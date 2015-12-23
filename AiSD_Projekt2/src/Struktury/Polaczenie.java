@@ -11,4 +11,19 @@ package Struktury;
  */
 public class Polaczenie {
     
+    private int predkosc;
+    private int droga;
+    
+    public Polaczenie(int predkosc, int droga){
+        this.predkosc = predkosc;
+        this.droga = droga;
+    }
+    
+    public int predkoscW(){
+        return this.predkosc;
+    }
+    
+    public int drogaW(){
+        return this.droga;
+    }
 }

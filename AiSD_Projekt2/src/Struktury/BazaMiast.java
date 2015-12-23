@@ -11,9 +11,18 @@ package Struktury;
  */
 public class BazaMiast {
     private Miasto[] listaMiast;
-    private Polaczenie[] listaPolaczen;
+    private int n;
+   // private Polaczenie[] listaPolaczen;
     
+    public BazaMiast(int n){
+        listaMiast = new Miasto[n];
+        this.n=n;
+    }
     public int liczbaMiast() {
-        return 5;
+        return n;
+    }
+    
+    public Miasto[] MiastaW(){
+        return this.listaMiast;
     }
 }
