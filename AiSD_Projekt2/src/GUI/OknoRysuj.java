@@ -53,12 +53,12 @@ public class OknoRysuj extends javax.swing.JPanel {
         g.setColor(Color.black);
 
 ///////////////////////////////////CHWILOWE
-        String [] nazwy={"Warszawa" , "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce" , "Katowice" , "Gdynia",
-        "Łosice", "Kraków", "","","","","","","","","",""};
-       // String nazwa = "Warszawa";
+        String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
+            "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
+        // String nazwa = "Warszawa";
         int n = baza.liczbaMiast();
-       // n = 6;
-        int polaczenia[] = {0, 1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+        // n = 6;
+        int polaczenia[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
 ///////////////////////////////////
 
         if (n == 1) {
@@ -75,14 +75,17 @@ public class OknoRysuj extends javax.swing.JPanel {
         //zaznaczenie połączeń między miastami
         for (int i = 0; i < n; i++) {
             int j = 0;
-            while (j < polaczenia.length) {
+            //while (j < polaczenia.length) {
+            while (j < n) {
                 zaznaczPolaczenie(polaczenia[i], polaczenia[j]);
                 j++;
+                System.out.println("Połączenie " + i + " -> " + j);
             }
         }
         for (int i = 0; i < n; i++) {
             int j = 0;
-            while (j < polaczenia.length) {
+            //while (j < polaczenia.length) {
+            while (j < n) {
                 zaznaczKierunek(polaczenia[i], polaczenia[j]);
                 j++;
             }
