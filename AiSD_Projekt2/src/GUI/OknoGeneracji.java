@@ -5,18 +5,22 @@
  */
 package GUI;
 
+import Struktury.BazaMiast;
+
 /**
  *
  * @author kuzniarg
  */
 public class OknoGeneracji extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OknoGeneracji
-     */
-    public OknoGeneracji() {
+    private BazaMiast baza;
+    private int aktualny = 0;
+
+    public OknoGeneracji(BazaMiast baza) {
+        this.baza = baza;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Generowanie danych - miasto 1");
     }
 
     /**
@@ -28,88 +32,98 @@ public class OknoGeneracji extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        oknoTabelaPolaczen1 = new GUI.OknoTabelaPolaczen();
-        przyciskDodajMiasto = new javax.swing.JButton();
         tekstNazwaMiasta = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tekstPrzejazd = new javax.swing.JTextField();
+        przyciskDalej = new javax.swing.JButton();
 
         setTitle("Generowanie danych");
 
-        javax.swing.GroupLayout oknoTabelaPolaczen1Layout = new javax.swing.GroupLayout(oknoTabelaPolaczen1);
-        oknoTabelaPolaczen1.setLayout(oknoTabelaPolaczen1Layout);
-        oknoTabelaPolaczen1Layout.setHorizontalGroup(
-            oknoTabelaPolaczen1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-        );
-        oknoTabelaPolaczen1Layout.setVerticalGroup(
-            oknoTabelaPolaczen1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jLabel2.setText("Nazwa miasta");
 
-        przyciskDodajMiasto.setText("Dodaj");
-        przyciskDodajMiasto.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Czas przejazu");
+
+        tekstPrzejazd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                przyciskDodajMiastoActionPerformed(evt);
+                tekstPrzejazdActionPerformed(evt);
             }
         });
 
-        tekstNazwaMiasta.setText("Miasto");
-        tekstNazwaMiasta.addActionListener(new java.awt.event.ActionListener() {
+        przyciskDalej.setText("Dalej");
+        przyciskDalej.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tekstNazwaMiastaActionPerformed(evt);
+                przyciskDalejActionPerformed(evt);
             }
         });
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nazwa miasta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(oknoTabelaPolaczen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tekstNazwaMiasta)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                    .addComponent(przyciskDodajMiasto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(przyciskDalej, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(tekstPrzejazd, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(przyciskDodajMiasto)
-                        .addGap(0, 379, Short.MAX_VALUE))
-                    .addComponent(oknoTabelaPolaczen1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(tekstPrzejazd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addComponent(przyciskDalej)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tekstNazwaMiastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tekstNazwaMiastaActionPerformed
+    private void tekstPrzejazdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tekstPrzejazdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tekstNazwaMiastaActionPerformed
+    }//GEN-LAST:event_tekstPrzejazdActionPerformed
 
-    private void przyciskDodajMiastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskDodajMiastoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_przyciskDodajMiastoActionPerformed
+    private void przyciskDalejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskDalejActionPerformed
+        this.setTitle("Generowanie danych - miasto " + (aktualny + 2));
+
+        //BLABLABLA//////////////
+        aktualny++;
+        if (aktualny == baza.getN() - 1) {
+            przyciskDalej.setText("Zakończ");
+        }
+        if (aktualny == baza.getN()) {
+            this.wyczysc();
+        }
+    }//GEN-LAST:event_przyciskDalejActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private GUI.OknoTabelaPolaczen oknoTabelaPolaczen1;
-    private javax.swing.JButton przyciskDodajMiasto;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton przyciskDalej;
     private javax.swing.JTextField tekstNazwaMiasta;
+    private javax.swing.JTextField tekstPrzejazd;
     // End of variables declaration//GEN-END:variables
+
+    private void wyczysc() {
+        this.aktualny = 0;
+        this.setVisible(false);
+        this.setTitle("Generowanie danych - miasto 1");
+        przyciskDalej.setText("Dalej");
+    }
 }

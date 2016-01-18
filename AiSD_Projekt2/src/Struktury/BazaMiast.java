@@ -12,33 +12,31 @@ package Struktury;
 public class BazaMiast {
 
     private Miasto[] listaMiast;
-    private int max = 0, aktualnie = 0;
+    private int n = 0;
     // private Polaczenie[] listaPolaczen;
 
     public BazaMiast() {
-        max = 4;
-        listaMiast = new Miasto[max];
     }
 
-    public int liczbaMiast() {
-        return aktualnie;
+    public int getN() {
+        return n;
     }
-    
-    public Miasto getMiasto (int i){
+
+    public Miasto getMiasto(int i) {
         return listaMiast[i];
     }
 
-    public void dodajMiasto(String nazwa, int postoj) {
-        if (aktualnie == max) {
-            max *= 2;
-            Miasto[] pom = new Miasto[max];
-            for (int i = 0; i < max / 2; i++) {
-                pom[i] = listaMiast[i];
-            }
-            listaMiast = pom;
-        }
-        Miasto nowe = new Miasto(nazwa, postoj);
-        listaMiast[aktualnie] = nowe;
-        aktualnie++;
+    public void dodajMiasto(int i, String nazwa, int postoj) {
+        listaMiast[i] = new Miasto(nazwa, postoj);
+    }
+
+    public void wyczysc() {
+        n = 0;
+        listaMiast = null;
+    }
+
+    public void inicjuj(int value) {
+        this.n = value;
+        listaMiast = new Miasto[n];
     }
 }

@@ -13,19 +13,20 @@ import Struktury.BazaMiast;
  */
 public class OknoGlowne extends javax.swing.JFrame {
 
-    private OknoGeneracji generacja = new OknoGeneracji();
     private BazaMiast baza = new BazaMiast();
+    private OknoWybierzN oknoWyboruN = new OknoWybierzN(baza);
 
     public OknoGlowne() {
         initComponents();
         init();
     }
 
-    public void init() {
+    private void init() {
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -43,6 +44,7 @@ public class OknoGlowne extends javax.swing.JFrame {
         przyciskGeneracjiDanych = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("AiSD Projekt 2");
 
         javax.swing.GroupLayout panelRysujLayout = new javax.swing.GroupLayout(panelRysuj);
         panelRysuj.setLayout(panelRysujLayout);
@@ -119,15 +121,15 @@ public class OknoGlowne extends javax.swing.JFrame {
     }//GEN-LAST:event_przyciskRysowaniaActionPerformed
 
     private void przyciskGeneracjiDanychActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskGeneracjiDanychActionPerformed
-        generacja.setVisible(true);
+        oknoWyboruN.setVisible(true);
     }//GEN-LAST:event_przyciskGeneracjiDanychActionPerformed
 
     private void przyciskTestoweActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskTestoweActionPerformed
-        if (baza.liczbaMiast() == 0) {
+        if (baza.getN() == 0) {
             String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
                 "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
             for (int i = 0; i < 8; i++) {
-                baza.dodajMiasto(nazwy[i], 0);
+                baza.dodajMiasto(i, nazwy[i], 0);
             }
         }
     }//GEN-LAST:event_przyciskTestoweActionPerformed
