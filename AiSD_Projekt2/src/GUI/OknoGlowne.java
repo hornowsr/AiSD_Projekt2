@@ -13,13 +13,14 @@ import Struktury.BazaMiast;
  */
 public class OknoGlowne extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OknoGlowne
-     */
+    private OknoGeneracji generacja = new OknoGeneracji();
+    private BazaMiast baza = new BazaMiast();
+
     public OknoGlowne() {
         initComponents();
         init();
     }
+
     public void init() {
         setVisible(true);
         setResizable(false);
@@ -37,12 +38,9 @@ public class OknoGlowne extends javax.swing.JFrame {
     private void initComponents() {
 
         panelRysuj = new GUI.OknoRysuj();
-        Rysuj = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        IloscMiast = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        Blad = new javax.swing.JLabel();
+        przyciskRysowania = new javax.swing.JButton();
+        przyciskTestowe = new javax.swing.JButton();
+        przyciskGeneracjiDanych = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,24 +55,26 @@ public class OknoGlowne extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        Rysuj.setText("Rysuj");
-        Rysuj.addActionListener(new java.awt.event.ActionListener() {
+        przyciskRysowania.setText("Rysuj");
+        przyciskRysowania.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RysujActionPerformed(evt);
+                przyciskRysowaniaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton1");
+        przyciskTestowe.setText("Dane testowe");
+        przyciskTestowe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                przyciskTestoweActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton1");
-
-        IloscMiast.setText("8");
-
-        jTextField1.setText("Podaj ilość miast");
-        jTextField1.setDisabledTextColor(new java.awt.Color(255, 0, 0));
-        jTextField1.setEnabled(false);
-
-        Blad.setForeground(new java.awt.Color(255, 0, 0));
+        przyciskGeneracjiDanych.setText("Generuj dane");
+        przyciskGeneracjiDanych.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                przyciskGeneracjiDanychActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,24 +84,15 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(Rysuj, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(IloscMiast, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Blad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(przyciskTestowe, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(przyciskRysowania, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,17 +101,11 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Rysuj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IloscMiast, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Blad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(przyciskRysowania)
+                        .addGap(122, 122, 122)
+                        .addComponent(przyciskGeneracjiDanych)
                         .addGap(37, 37, 37)
-                        .addComponent(jButton2)
+                        .addComponent(przyciskTestowe)
                         .addGap(0, 409, Short.MAX_VALUE))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -129,27 +114,29 @@ public class OknoGlowne extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RysujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RysujActionPerformed
-        int n=Integer.parseInt(IloscMiast.getText());
-        if(n>3&&n<21){
-            Blad.setText(null);
-            panelRysuj.rysuj(new BazaMiast(n));
-        }else
-            Blad.setText("Błąd!(min=4, max=20)");
-    }//GEN-LAST:event_RysujActionPerformed
+    private void przyciskRysowaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskRysowaniaActionPerformed
+        panelRysuj.rysuj(baza);
+    }//GEN-LAST:event_przyciskRysowaniaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    private void przyciskGeneracjiDanychActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskGeneracjiDanychActionPerformed
+        generacja.setVisible(true);
+    }//GEN-LAST:event_przyciskGeneracjiDanychActionPerformed
+
+    private void przyciskTestoweActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskTestoweActionPerformed
+        if (baza.liczbaMiast() == 0) {
+            String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
+                "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
+            for (int i = 0; i < 8; i++) {
+                baza.dodajMiasto(nazwy[i], 0);
+            }
+        }
+    }//GEN-LAST:event_przyciskTestoweActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Blad;
-    private javax.swing.JTextField IloscMiast;
-    private javax.swing.JButton Rysuj;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JTextField jTextField1;
     private GUI.OknoRysuj panelRysuj;
+    private javax.swing.JButton przyciskGeneracjiDanych;
+    private javax.swing.JButton przyciskRysowania;
+    private javax.swing.JButton przyciskTestowe;
     // End of variables declaration//GEN-END:variables
 }

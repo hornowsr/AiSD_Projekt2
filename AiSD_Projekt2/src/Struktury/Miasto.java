@@ -10,21 +10,30 @@ package Struktury;
  * @author kuzniarg
  */
 public class Miasto {
-    
-    private Polaczenie [] polaczenia;
+
+    private Polaczenie[] polaczenia;
+    private String nazwa;
     private int postoj;
-    
-    public Miasto(int n, int postoj){
-        polaczenia = new Polaczenie[n];
-        this.postoj=postoj;
+
+    public Miasto(String nazwa, int postoj) {
+        this.nazwa = nazwa;
+        this.postoj = postoj;
     }
-    
-    public Polaczenie[] polaczeniaW(){
+
+    public Polaczenie[] getPolaczenia() {
         return this.polaczenia;
     }
-    
-    public int postujW(){
+
+    public int getPostoj() {
         return this.postoj;
     }
-    
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void dodajPolaczenie() {
+
+    }
+
 }

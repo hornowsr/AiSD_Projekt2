@@ -47,5 +47,5 @@ public class AiSD_Projekt2 {
             }
         });
     }
-    
+
 }
