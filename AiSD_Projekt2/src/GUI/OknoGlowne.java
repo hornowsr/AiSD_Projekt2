@@ -23,6 +23,7 @@ public class OknoGlowne extends javax.swing.JFrame {
     }
 
     private void init() {
+        
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -130,6 +131,7 @@ public class OknoGlowne extends javax.swing.JFrame {
             String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
                 "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
             for (int i = 0; i < 8; i++) {
+                System.out.println("I:"+i);
                 baza.setMiasto(i, new Miasto(nazwy[i], 0, baza.getN()));
             }
         }

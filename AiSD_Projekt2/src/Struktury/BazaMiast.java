@@ -39,4 +39,14 @@ public class BazaMiast {
         this.n = value;
         listaMiast = new Miasto[n];
     }
+    
+    public static void drukujBaze(BazaMiast baza){
+        for(int i = 0 ; i < baza.getN() ; i++){
+            System.out.println("Miasto:"+baza.getMiasto(i).getNazwa()+System.getProperty("line.separator")+"     Połączenia:");
+            for(int j = 0 ; j < baza.getN() ; j++){
+               if(baza.getMiasto(i).getPolaczenia()[j].getDroga()!=0&&baza.getMiasto(i).getPolaczenia()[j].getPredkosc()!=0)
+                   System.out.println("           "+baza.getMiasto(j).getNazwa());
+            }
+        }
+    }
 }

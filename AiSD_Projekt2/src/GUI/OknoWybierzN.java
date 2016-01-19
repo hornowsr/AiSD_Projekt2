@@ -6,6 +6,7 @@
 package GUI;
 
 import Struktury.BazaMiast;
+import static aisd_projekt2.Losowanie.Losowanie;
 
 /**
  *
@@ -116,7 +117,9 @@ public class OknoWybierzN extends javax.swing.JFrame {
         if (!czyLosowe) {
             generacja.setVisible(true);
         }
-        //else losuj dane
+        else{
+            Losowanie(baza);
+        }
     }//GEN-LAST:event_przyciskZatwierdzActionPerformed
 
 
