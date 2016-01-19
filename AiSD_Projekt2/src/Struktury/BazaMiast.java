@@ -26,8 +26,8 @@ public class BazaMiast {
         return listaMiast[i];
     }
 
-    public void dodajMiasto(int i, String nazwa, int postoj) {
-        listaMiast[i] = new Miasto(nazwa, postoj);
+    public void setMiasto(int i, Miasto nowe) {
+        listaMiast[i] = nowe;
     }
 
     public void wyczysc() {

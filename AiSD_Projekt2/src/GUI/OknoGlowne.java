@@ -6,6 +6,7 @@
 package GUI;
 
 import Struktury.BazaMiast;
+import Struktury.Miasto;
 
 /**
  *
@@ -129,7 +130,7 @@ public class OknoGlowne extends javax.swing.JFrame {
             String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
                 "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
             for (int i = 0; i < 8; i++) {
-                baza.dodajMiasto(i, nazwy[i], 0);
+                baza.setMiasto(i, new Miasto(nazwy[i], 0, baza.getN()));
             }
         }
     }//GEN-LAST:event_przyciskTestoweActionPerformed

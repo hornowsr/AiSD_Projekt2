@@ -11,13 +11,14 @@ package Struktury;
  */
 public class Miasto {
 
-    private Polaczenie[] polaczenia;
+    private Polaczenie polaczenia[];
     private String nazwa;
     private int postoj;
 
-    public Miasto(String nazwa, int postoj) {
+    public Miasto(String nazwa, int postoj, int n) {
         this.nazwa = nazwa;
         this.postoj = postoj;
+        this.polaczenia = new Polaczenie[n];
     }
 
     public Polaczenie[] getPolaczenia() {
@@ -32,8 +33,8 @@ public class Miasto {
         return nazwa;
     }
 
-    public void dodajPolaczenie() {
-
+    public void dodajPolaczenie(int i, int predkosc, int droga) {
+        this.polaczenia[i] = new Polaczenie(predkosc, droga);
     }
 
 }

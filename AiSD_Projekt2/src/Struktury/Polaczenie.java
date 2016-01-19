@@ -19,11 +19,11 @@ public class Polaczenie {
         this.droga = droga;
     }
     
-    public int predkoscW(){
+    public int getPredkosc(){
         return this.predkosc;
     }
     
-    public int drogaW(){
+    public int getDroga(){
         return this.droga;
     }
 }
