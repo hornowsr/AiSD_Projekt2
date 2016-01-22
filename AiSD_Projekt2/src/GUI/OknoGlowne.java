@@ -7,6 +7,7 @@ package GUI;
 
 import Struktury.BazaMiast;
 import Struktury.Miasto;
+import aisd_projekt2.Dijkstra;
 
 /**
  *
@@ -29,6 +30,7 @@ public class OknoGlowne extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -44,6 +46,9 @@ public class OknoGlowne extends javax.swing.JFrame {
         przyciskRysowania = new javax.swing.JButton();
         przyciskTestowe = new javax.swing.JButton();
         przyciskGeneracjiDanych = new javax.swing.JButton();
+        Licz = new javax.swing.JButton();
+        zKad = new javax.swing.JTextField();
+        doKad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AiSD Projekt 2");
@@ -80,6 +85,32 @@ public class OknoGlowne extends javax.swing.JFrame {
             }
         });
 
+        Licz.setText("Wyznacz Trasę");
+        Licz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LiczActionPerformed(evt);
+            }
+        });
+
+        zKad.setText("Początek");
+        zKad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zKadMouseClicked(evt);
+            }
+        });
+        zKad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zKadActionPerformed(evt);
+            }
+        });
+
+        doKad.setText("Koniec");
+        doKad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doKadMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +127,13 @@ public class OknoGlowne extends javax.swing.JFrame {
                         .addComponent(przyciskTestowe, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(przyciskRysowania, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(przyciskRysowania, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Licz, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(zKad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(doKad, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,7 +147,13 @@ public class OknoGlowne extends javax.swing.JFrame {
                         .addComponent(przyciskGeneracjiDanych)
                         .addGap(37, 37, 37)
                         .addComponent(przyciskTestowe)
-                        .addGap(0, 409, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(zKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(doKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Licz)
+                        .addGap(0, 290, Short.MAX_VALUE))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -137,11 +180,38 @@ public class OknoGlowne extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_przyciskTestoweActionPerformed
 
+    public int wynik[];
+    private void LiczActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiczActionPerformed
+        wynik = new int [baza.getN()];
+        Dijkstra algo = new Dijkstra();
+        
+        int poczatek = Integer.parseInt(zKad.getText());
+        
+        wynik = algo.Dijktra(baza , poczatek);
+        
+        algo.Czas(wynik, baza);
+    }//GEN-LAST:event_LiczActionPerformed
+
+    private void zKadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zKadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_zKadActionPerformed
+
+    private void zKadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zKadMouseClicked
+        zKad.setText(null);
+    }//GEN-LAST:event_zKadMouseClicked
+
+    private void doKadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doKadMouseClicked
+        doKad.setText(null);
+    }//GEN-LAST:event_doKadMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Licz;
+    private javax.swing.JTextField doKad;
     private GUI.OknoRysuj panelRysuj;
     private javax.swing.JButton przyciskGeneracjiDanych;
     private javax.swing.JButton przyciskRysowania;
     private javax.swing.JButton przyciskTestowe;
+    private javax.swing.JTextField zKad;
     // End of variables declaration//GEN-END:variables
 }

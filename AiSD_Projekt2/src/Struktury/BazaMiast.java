@@ -25,6 +25,10 @@ public class BazaMiast {
     public Miasto getMiasto(int i) {
         return listaMiast[i];
     }
+    
+    public Miasto[] getMiasta(){
+        return listaMiast;
+    }
 
     public void setMiasto(int i, Miasto nowe) {
         listaMiast[i] = nowe;
@@ -39,13 +43,17 @@ public class BazaMiast {
         this.n = value;
         listaMiast = new Miasto[n];
     }
-    
-    public static void drukujBaze(BazaMiast baza){
-        for(int i = 0 ; i < baza.getN() ; i++){
-            System.out.println("Miasto:"+baza.getMiasto(i).getNazwa()+System.getProperty("line.separator")+"     Połączenia:");
-            for(int j = 0 ; j < baza.getN() ; j++){
-               if(baza.getMiasto(i).getPolaczenia()[j].getDroga()!=0&&baza.getMiasto(i).getPolaczenia()[j].getPredkosc()!=0)
-                   System.out.println("           "+baza.getMiasto(j).getNazwa());
+
+    public static void drukujBaze(BazaMiast baza) {
+        for (int i = 0; i < baza.getN(); i++) {
+            System.out.println("Miasto:" + baza.getMiasto(i).getNazwa()+" Postuj="+baza.getMiasto(i).getPostoj() + System.getProperty("line.separator") + "     Połączenia:");
+            for (int j = 0; j < baza.getN(); j++) {
+
+                if (baza.getMiasto(i).getPolaczenia()[j].getDroga() != 0 && baza.getMiasto(i).getPolaczenia()[j].getPredkosc() != 0) {
+                    double czas = baza.getMiasto(i).getPolaczenia()[j].getDroga() / baza.getMiasto(i).getPolaczenia()[j].getPredkosc();
+                    System.out.println("           " + baza.getMiasto(j).getNazwa() +" Droga:"+baza.getMiasto(i).getPolaczenia()[j].getDroga()+
+                            " Predkosc:"+ baza.getMiasto(i).getPolaczenia()[j].getPredkosc() + " Czas = " + czas);
+                }
             }
         }
     }

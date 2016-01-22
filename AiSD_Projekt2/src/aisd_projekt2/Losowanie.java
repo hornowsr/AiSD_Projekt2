@@ -29,21 +29,24 @@ public class Losowanie {
             
             int postuj = random.nextInt(10);
            // int ilePolaczen = random.nextInt(x-4)+4;
-           // System.out.println("postuj"+postuj);
+            
             int czyPolaczenie;
             int s,v;
             Miasto miasto = new Miasto(nazwy[i] ,postuj ,x  );
+           // System.out.println("Miasto:"+nazwy[i]+" Postuj="+postuj);
             //System.out.println("I"+i);
             for(int j = 0 ; j < x ; j++){
                 //System.out.println("JJ"+j);
                 s = random.nextInt(100)+1;
-                v = random.nextInt(100)+1;
+                v = random.nextInt(10)+1;
                 czyPolaczenie = random.nextInt(2);
                 //System.out.println("czyPolaczenie"+czyPolaczenie);
                 if(czyPolaczenie==1){
-                    miasto.dodajPolaczenie(j, s, v);
+                    miasto.dodajPolaczenie(j, v, s);
+                   // System.out.println("    Miasto:"+nazwy[j]+" Droga="+s+" Predkosc="+v);
                 }else{
                     miasto.dodajPolaczenie(j, 0, 0);
+                    
                 }
             }
             

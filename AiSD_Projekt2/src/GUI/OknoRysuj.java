@@ -61,28 +61,27 @@ public class OknoRysuj extends javax.swing.JPanel {
         }
 
         kat = 360 / n;
-        //zaznaczanie miast
-        for (int i = 0; i < n; i++) {
-            this.zaznaczMiasto(wyznaczX(i), wyznaczY(i), baza.getMiasto(i).getNazwa());
-        }
+       
 
         //zaznaczenie połączeń między miastami
         for (int i = 0; i < n; i++) {
-            int j = 0;
-            //while (j < polaczenia.length) {
-            while (j < n) {
-                zaznaczPolaczenie(polaczenia[i], polaczenia[j]);
-                j++;
+            for(int j = 0 ; j < n ; j++){
+                if (baza.getMiasto(i).getPolaczenia()[j].getDroga() != 0 && baza.getMiasto(i).getPolaczenia()[j].getDroga() != 0) {
+                    zaznaczPolaczenie(polaczenia[i], polaczenia[j]);
+                    zaznaczKierunek(polaczenia[i], polaczenia[j]);
+                }
             }
         }
+        
+         //zaznaczanie miast
         for (int i = 0; i < n; i++) {
-            int j = 0;
-            //while (j < polaczenia.length) {
-            while (j < n) {
-                zaznaczKierunek(polaczenia[i], polaczenia[j]);
-                j++;
+            if(baza.getMiasto(i).getPolaczenia()[i].getDroga()!=0){
+                this.zaznaczMiasto2(wyznaczX(i), wyznaczY(i), baza.getMiasto(i).getNazwa());
+            }else{ 
+                this.zaznaczMiasto(wyznaczX(i), wyznaczY(i), baza.getMiasto(i).getNazwa());
             }
         }
+       
 
     }
 
@@ -96,6 +95,13 @@ public class OknoRysuj extends javax.swing.JPanel {
         Graphics g = getGraphics();
         g.setColor(Color.blue);
         g.fillOval(x, y, 10, 10);
+        g.drawString(miasto, x, y);
+    }
+    private void zaznaczMiasto2(int x, int y, String miasto) {
+        Graphics g = getGraphics();
+        g.setColor(Color.black);
+        g.fillOval(x, y, 10, 10);
+        g.setColor(Color.blue);
         g.drawString(miasto, x, y);
     }
 

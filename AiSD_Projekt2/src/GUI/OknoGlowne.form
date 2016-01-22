@@ -40,6 +40,14 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="przyciskRysowania" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="Licz" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="zKad" alignment="0" max="32767" attributes="0"/>
+                          <Component id="doKad" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -56,7 +64,13 @@
                       <Component id="przyciskGeneracjiDanych" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="przyciskTestowe" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="zKad" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="doKad" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Licz" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="290" max="32767" attributes="0"/>
                   </Group>
                   <Component id="panelRysuj" max="32767" attributes="0"/>
               </Group>
@@ -103,6 +117,31 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskGeneracjiDanychActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Licz">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Wyznacz Tras&#x119;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LiczActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="zKad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pocz&#x105;tek"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zKadMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zKadActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="doKad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Koniec"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="doKadMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
