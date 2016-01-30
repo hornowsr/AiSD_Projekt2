@@ -19,6 +19,8 @@ public class OknoGeneracji extends javax.swing.JFrame {
 
     private BazaMiast baza;
     private int aktualny = 0;
+    private int droga[];
+    private int predkosc[];
 
     public OknoGeneracji(BazaMiast baza) {
         this.baza = baza;
@@ -41,18 +43,13 @@ public class OknoGeneracji extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tekstPrzejazd = new javax.swing.JTextField();
         przyciskDalej = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        poleDroga = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        polePredkosc = new javax.swing.JTextField();
+        listaMiast = new javax.swing.JComboBox<>();
+        przyciskZatwierdź = new javax.swing.JButton();
 
         setTitle("Generowanie danych");
         setResizable(false);
@@ -74,29 +71,24 @@ public class OknoGeneracji extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("jTextField1");
+        poleDroga.setText("0");
 
-        jLabel1.setText("jLabel1");
+        jLabel9.setText("Połączenie");
 
-        jLabel4.setText("jLabel4");
+        jLabel10.setText("Droga");
 
-        jLabel5.setText("jLabel5");
+        jLabel11.setText("Prędkość");
 
-        jLabel6.setText("jLabel6");
+        polePredkosc.setText("0");
 
-        jLabel7.setText("jLabel7");
+        listaMiast.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Miasto 1", "Miasto 2", "Miasto 3", "Miasto 4" }));
 
-        jLabel8.setText("jLabel8");
-
-        jLabel9.setText("jLabel9");
-
-        jLabel10.setText("jLabel10");
-
-        jLabel11.setText("jLabel11");
-
-        jLabel12.setText("jLabel12");
-
-        jTextField2.setText("jTextField2");
+        przyciskZatwierdź.setText("Zatwierdź");
+        przyciskZatwierdź.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                przyciskZatwierdźActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,73 +98,66 @@ public class OknoGeneracji extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(listaMiast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(przyciskDalej, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tekstPrzejazd, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(tekstPrzejazd, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(poleDroga)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(polePredkosc)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(przyciskZatwierdź)
+                                .addGap(18, 18, 18))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel9)
+                        .addGap(0, 337, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(tekstPrzejazd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(tekstNazwaMiasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(tekstPrzejazd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(polePredkosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(listaMiast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(przyciskZatwierdź))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(poleDroga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(przyciskDalej)
                 .addContainerGap())
         );
@@ -193,14 +178,19 @@ public class OknoGeneracji extends javax.swing.JFrame {
 
         Miasto nowe = new Miasto(tekstNazwaMiasta.getText(), Integer.parseInt(tekstPrzejazd.getText()), baza.getN());
         for (int i = 0; i < baza.getN(); i++) {
-            nowe.dodajPolaczenie(i, 0, 0);
-            //czysczczenie pól
-
+            if (predkosc[i] <= 0 || droga[i] <= 0 || i == aktualny) {
+                nowe.dodajPolaczenie(i, 0, 0);
+            } else {
+                nowe.dodajPolaczenie(i, predkosc[i], droga[i]);
+            }
         }
         baza.setMiasto(aktualny, nowe);
 
         tekstNazwaMiasta.setText("");
         tekstPrzejazd.setText("");
+        poleDroga.setText("0");
+        polePredkosc.setText("0");
+        listaMiast.setSelectedIndex(0);
 
         aktualny++;
         if (aktualny == baza.getN() - 1) {
@@ -209,25 +199,27 @@ public class OknoGeneracji extends javax.swing.JFrame {
         if (aktualny == baza.getN()) {
             this.wyczysc();
         }
+        this.droga = new int[baza.getN()];
+        this.predkosc = new int[baza.getN()];
     }//GEN-LAST:event_przyciskDalejActionPerformed
+
+    private void przyciskZatwierdźActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskZatwierdźActionPerformed
+        predkosc[listaMiast.getSelectedIndex()] = Integer.parseInt(polePredkosc.getText());
+        droga[listaMiast.getSelectedIndex()] = Integer.parseInt(poleDroga.getText());
+    }//GEN-LAST:event_przyciskZatwierdźActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> listaMiast;
+    private javax.swing.JTextField poleDroga;
+    private javax.swing.JTextField polePredkosc;
     private javax.swing.JButton przyciskDalej;
+    private javax.swing.JButton przyciskZatwierdź;
     private javax.swing.JTextField tekstNazwaMiasta;
     private javax.swing.JTextField tekstPrzejazd;
     // End of variables declaration//GEN-END:variables
@@ -237,12 +229,24 @@ public class OknoGeneracji extends javax.swing.JFrame {
         this.setVisible(false);
         this.setTitle("Generowanie danych - miasto 1");
         przyciskDalej.setText("Dalej");
+        poleDroga.setText("0");
+        polePredkosc.setText("0");
+        listaMiast.setSelectedIndex(0);
     }
 
     private void generujPanel() {
         for (int i = 0; i < baza.getN(); i++) {
             JLabel opis = new JLabel("Miasto " + (i + 1));
-
         }
+    }
+
+    public void setListaMiast(int n) {
+        this.listaMiast.removeAllItems();
+        for (int i = 0; i < n; i++) {
+            this.listaMiast.addItem("Miasto " + (i + 1));
+        }
+        this.droga = new int[n];
+        this.predkosc = new int[n];
+
     }
 }

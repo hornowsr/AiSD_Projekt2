@@ -33,10 +33,10 @@ public class Dijkstra {
         for (int i = 0; i < wielkosc; i++) {
             for (int j = 0; j < wielkosc; j++) {
                 if (baza.getMiasto(i).getPolaczenia()[j].getDroga() != 0 || baza.getMiasto(i).getPolaczenia()[j].getPredkosc() != 0) {
-                                            
-                        time = baza.getMiasto(i).getPolaczenia()[j].getDroga() / baza.getMiasto(i).getPolaczenia()[j].getPredkosc()
-                                + baza.getMiasto(j).getPostoj();
-                   
+
+                    time = baza.getMiasto(i).getPolaczenia()[j].getDroga() / baza.getMiasto(i).getPolaczenia()[j].getPredkosc()
+                            + baza.getMiasto(j).getPostoj();
+
                     matrix[i][j] = time;
 
                 } else {
@@ -85,7 +85,9 @@ public class Dijkstra {
 
             }
         }
-
+        pom = baza.getMiasto(0);
+        baza.getMiasta()[0] = baza.getMiasta()[poczatek];
+        baza.getMiasta()[poczatek] = pom;
         return preD;
 
     }

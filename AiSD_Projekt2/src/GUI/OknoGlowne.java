@@ -44,7 +44,6 @@ public class OknoGlowne extends javax.swing.JFrame {
 
         panelRysuj = new GUI.OknoRysuj();
         przyciskRysowania = new javax.swing.JButton();
-        przyciskTestowe = new javax.swing.JButton();
         przyciskGeneracjiDanych = new javax.swing.JButton();
         Licz = new javax.swing.JButton();
         zKad = new javax.swing.JTextField();
@@ -61,20 +60,13 @@ public class OknoGlowne extends javax.swing.JFrame {
         );
         panelRysujLayout.setVerticalGroup(
             panelRysujLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 637, Short.MAX_VALUE)
         );
 
         przyciskRysowania.setText("Rysuj");
         przyciskRysowania.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 przyciskRysowaniaActionPerformed(evt);
-            }
-        });
-
-        przyciskTestowe.setText("Dane testowe");
-        przyciskTestowe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                przyciskTestoweActionPerformed(evt);
             }
         });
 
@@ -118,22 +110,13 @@ public class OknoGlowne extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(przyciskTestowe, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(przyciskRysowania, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Licz, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(zKad, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(doKad, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(przyciskRysowania, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(doKad, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(zKad)
+                    .addComponent(Licz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,17 +126,15 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(przyciskRysowania)
-                        .addGap(122, 122, 122)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(przyciskGeneracjiDanych)
-                        .addGap(37, 37, 37)
-                        .addComponent(przyciskTestowe)
-                        .addGap(26, 26, 26)
+                        .addGap(13, 13, 13)
                         .addComponent(zKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(doKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Licz)
-                        .addGap(0, 290, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -168,17 +149,6 @@ public class OknoGlowne extends javax.swing.JFrame {
     private void przyciskGeneracjiDanychActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskGeneracjiDanychActionPerformed
         oknoWyboruN.setVisible(true);
     }//GEN-LAST:event_przyciskGeneracjiDanychActionPerformed
-
-    private void przyciskTestoweActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskTestoweActionPerformed
-        if (baza.getN() == 0) {
-            String[] nazwy = {"Warszawa", "Poznań", "Kielce", "Harachwosty", "Mrozy", "Siedlce", "Katowice", "Gdynia",
-                "Łosice", "Kraków", "", "", "", "", "", "", "", "", "", ""};
-            for (int i = 0; i < 8; i++) {
-                System.out.println("I:"+i);
-                baza.setMiasto(i, new Miasto(nazwy[i], 0, baza.getN()));
-            }
-        }
-    }//GEN-LAST:event_przyciskTestoweActionPerformed
 
     public int wynik[];
     private void LiczActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiczActionPerformed
@@ -211,7 +181,6 @@ public class OknoGlowne extends javax.swing.JFrame {
     private GUI.OknoRysuj panelRysuj;
     private javax.swing.JButton przyciskGeneracjiDanych;
     private javax.swing.JButton przyciskRysowania;
-    private javax.swing.JButton przyciskTestowe;
     private javax.swing.JTextField zKad;
     // End of variables declaration//GEN-END:variables
 }

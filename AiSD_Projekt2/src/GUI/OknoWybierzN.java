@@ -116,6 +116,7 @@ public class OknoWybierzN extends javax.swing.JFrame {
         this.setVisible(false);
         if (!czyLosowe) {
             generacja.setVisible(true);
+            generacja.setListaMiast(suwakN.getValue());
         }
         else{
             Losowanie(baza);
