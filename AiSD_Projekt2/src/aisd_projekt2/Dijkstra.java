@@ -16,17 +16,15 @@ public class Dijkstra {
 
     public int[] Dijktra(BazaMiast baza, int poczatek) {
 
-        Miasto pom;
-        pom = baza.getMiasto(0);
-        baza.getMiasta()[0] = baza.getMiasta()[poczatek];
-        baza.getMiasta()[poczatek] = pom;
+     
         int wielkosc = baza.getN();
         int preD[] = new int[wielkosc];
         double matrix[][] = new double[wielkosc][wielkosc];
         double czas[] = new double[wielkosc];
         int odwiedzone[] = new int[wielkosc];
         double min;
-        int NastepneMiasto = 0;
+        int NastepneMiasto = poczatek;
+        preD[poczatek]=-1;
         double time;
 
         //Przygotowanie tablicy
@@ -41,34 +39,43 @@ public class Dijkstra {
 
                 } else {
 
-                    matrix[i][j] = 0;
+                    //matrix[i][j] = 0;
+                    matrix[i][j] = 99;
                 }
-
-                if (matrix[i][j] == 0) {
-
-                    matrix[i][j] = Integer.MAX_VALUE;
-                }
+                matrix[i][i]=0;
             }
+            odwiedzone[i]=-1;
         }
+      //  for(int i = 0 ; i < wielkosc ; i++){
+       //     for(int j=0 ; j < wielkosc ; j++){
+       //         System.out.print("   "+matrix[i][j]);
+       //     }
+       //         System.out.println();
+       //     }
 
-        czas = matrix[0];
-        czas[0] = 0;
-        odwiedzone[0] = 1;
+        czas = matrix[poczatek];
+        czas[poczatek] = 0;
+        odwiedzone[poczatek] = 1;
 
+        int pom=NastepneMiasto;
         //Algorytm 
-        for (int i = 0; i < wielkosc; i++) {
-
+        for (int i = 0; i < wielkosc-1; i++) {
+            
             min = Integer.MAX_VALUE;
             //Wyszukiwanie najmniejszej wartości
             for (int j = 0; j < wielkosc; j++) {
 
-                if (min > czas[j] && odwiedzone[j] != 1) {
+                if (odwiedzone[j] != 1&&min > czas[j] ) {
 
                     min = czas[j];
                     NastepneMiasto = j;
+                    
+                    
                 }
             }
-
+            
+            
+            preD[NastepneMiasto]=pom;
             odwiedzone[NastepneMiasto] = 1;
             //Właściwy algorytm Dijkstry
             for (int k = 0; k < wielkosc; k++) {
@@ -84,10 +91,11 @@ public class Dijkstra {
                 }
 
             }
+            pom=NastepneMiasto;
         }
-        pom = baza.getMiasto(0);
-        baza.getMiasta()[0] = baza.getMiasta()[poczatek];
-        baza.getMiasta()[poczatek] = pom;
+     //  for(int i = 0 ; i < wielkosc ; i++)
+      //     System.out.println("PRED: "+i+":"+preD[i]);
+        
         return preD;
 
     }
@@ -101,11 +109,11 @@ public class Dijkstra {
 
             j = i;
 
-            do {
+            while (j != -1) {
                 j = preD[j];
                 System.out.println(" <- " + baza.getMiasto(j).getNazwa());
 
-            } while (j != 0);
+            } 
 
             //System.out.println();
         }
