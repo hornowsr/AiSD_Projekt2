@@ -24,13 +24,13 @@ public class OknoGlowne extends javax.swing.JFrame {
     }
 
     private void init() {
-        
+
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -45,9 +45,9 @@ public class OknoGlowne extends javax.swing.JFrame {
         panelRysuj = new GUI.OknoRysuj();
         przyciskRysowania = new javax.swing.JButton();
         przyciskGeneracjiDanych = new javax.swing.JButton();
-        Licz = new javax.swing.JButton();
-        zKad = new javax.swing.JTextField();
-        doKad = new javax.swing.JTextField();
+        przyciskLicz = new javax.swing.JButton();
+        poleSkad = new javax.swing.JTextField();
+        poleDokad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AiSD Projekt 2");
@@ -77,29 +77,30 @@ public class OknoGlowne extends javax.swing.JFrame {
             }
         });
 
-        Licz.setText("Wyznacz Trasę");
-        Licz.addActionListener(new java.awt.event.ActionListener() {
+        przyciskLicz.setText("Wyznacz Trasę");
+        przyciskLicz.setEnabled(false);
+        przyciskLicz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LiczActionPerformed(evt);
+                przyciskLiczActionPerformed(evt);
             }
         });
 
-        zKad.setText("Początek");
-        zKad.addMouseListener(new java.awt.event.MouseAdapter() {
+        poleSkad.setText("Początek");
+        poleSkad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                zKadMouseClicked(evt);
+                poleSkadMouseClicked(evt);
             }
         });
-        zKad.addActionListener(new java.awt.event.ActionListener() {
+        poleSkad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zKadActionPerformed(evt);
+                poleSkadActionPerformed(evt);
             }
         });
 
-        doKad.setText("Koniec");
-        doKad.addMouseListener(new java.awt.event.MouseAdapter() {
+        poleDokad.setText("Koniec");
+        poleDokad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                doKadMouseClicked(evt);
+                poleDokadMouseClicked(evt);
             }
         });
 
@@ -114,9 +115,9 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(przyciskRysowania, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(doKad, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(zKad)
-                    .addComponent(Licz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(poleDokad, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(poleSkad)
+                    .addComponent(przyciskLicz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,11 +130,11 @@ public class OknoGlowne extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(przyciskGeneracjiDanych)
                         .addGap(13, 13, 13)
-                        .addComponent(zKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(poleSkad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(doKad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(poleDokad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Licz)
+                        .addComponent(przyciskLicz)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -144,6 +145,7 @@ public class OknoGlowne extends javax.swing.JFrame {
 
     private void przyciskRysowaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskRysowaniaActionPerformed
         panelRysuj.rysuj(baza);
+        przyciskLicz.setEnabled(true);
     }//GEN-LAST:event_przyciskRysowaniaActionPerformed
 
     private void przyciskGeneracjiDanychActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskGeneracjiDanychActionPerformed
@@ -151,36 +153,53 @@ public class OknoGlowne extends javax.swing.JFrame {
     }//GEN-LAST:event_przyciskGeneracjiDanychActionPerformed
 
     public int wynik[];
-    private void LiczActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiczActionPerformed
-        wynik = new int [baza.getN()];
+    private void przyciskLiczActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskLiczActionPerformed
+        wynik = new int[baza.getN()];
         Dijkstra algo = new Dijkstra();
-        
-        int poczatek = Integer.parseInt(zKad.getText());
-        
-        wynik = algo.Dijktra(baza , poczatek);
-        
+
+        int poczatek = Integer.parseInt(poleSkad.getText());
+
+        wynik = algo.Dijktra(baza, poczatek);
+
         algo.Czas(wynik, baza);
-    }//GEN-LAST:event_LiczActionPerformed
 
-    private void zKadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zKadActionPerformed
+        int trasa = Integer.parseInt(poleDokad.getText());
+        while (trasa != 0) {
+            int stara = trasa;
+            trasa = wynik[stara];
+            if (trasa != 0) {
+                this.panelRysuj.zaznaczDroge(stara, trasa);
+            } else {
+                this.panelRysuj.zaznaczDroge(stara, poczatek);
+            }
+        }
+
+        Miasto pom;
+        pom = baza.getMiasto(0);
+        baza.getMiasta()[0] = baza.getMiasta()[poczatek];
+        baza.getMiasta()[poczatek] = pom;
+
+    }//GEN-LAST:event_przyciskLiczActionPerformed
+
+    private void poleSkadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poleSkadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_zKadActionPerformed
+    }//GEN-LAST:event_poleSkadActionPerformed
 
-    private void zKadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zKadMouseClicked
-        zKad.setText(null);
-    }//GEN-LAST:event_zKadMouseClicked
+    private void poleSkadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_poleSkadMouseClicked
+        poleSkad.setText(null);
+    }//GEN-LAST:event_poleSkadMouseClicked
 
-    private void doKadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doKadMouseClicked
-        doKad.setText(null);
-    }//GEN-LAST:event_doKadMouseClicked
+    private void poleDokadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_poleDokadMouseClicked
+        poleDokad.setText(null);
+    }//GEN-LAST:event_poleDokadMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Licz;
-    private javax.swing.JTextField doKad;
     private GUI.OknoRysuj panelRysuj;
+    private javax.swing.JTextField poleDokad;
+    private javax.swing.JTextField poleSkad;
     private javax.swing.JButton przyciskGeneracjiDanych;
+    private javax.swing.JButton przyciskLicz;
     private javax.swing.JButton przyciskRysowania;
-    private javax.swing.JTextField zKad;
     // End of variables declaration//GEN-END:variables
 }

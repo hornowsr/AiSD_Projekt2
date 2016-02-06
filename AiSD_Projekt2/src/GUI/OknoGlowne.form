@@ -31,9 +31,9 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="przyciskGeneracjiDanych" alignment="1" pref="120" max="32767" attributes="0"/>
                   <Component id="przyciskRysowania" alignment="1" pref="120" max="32767" attributes="0"/>
-                  <Component id="doKad" alignment="1" max="32767" attributes="0"/>
-                  <Component id="zKad" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Licz" alignment="0" max="32767" attributes="0"/>
+                  <Component id="poleDokad" alignment="1" max="32767" attributes="0"/>
+                  <Component id="poleSkad" alignment="0" max="32767" attributes="0"/>
+                  <Component id="przyciskLicz" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,11 +49,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="przyciskGeneracjiDanych" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="zKad" min="-2" max="-2" attributes="0"/>
+                      <Component id="poleSkad" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="doKad" min="-2" max="-2" attributes="0"/>
+                      <Component id="poleDokad" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Licz" min="-2" max="-2" attributes="0"/>
+                      <Component id="przyciskLicz" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="panelRysuj" max="32767" attributes="0"/>
@@ -95,29 +95,30 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskGeneracjiDanychActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Licz">
+    <Component class="javax.swing.JButton" name="przyciskLicz">
       <Properties>
         <Property name="text" type="java.lang.String" value="Wyznacz Tras&#x119;"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LiczActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskLiczActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="zKad">
+    <Component class="javax.swing.JTextField" name="poleSkad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pocz&#x105;tek"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zKadMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zKadActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="poleSkadMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="poleSkadActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="doKad">
+    <Component class="javax.swing.JTextField" name="poleDokad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Koniec"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="doKadMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="poleDokadMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

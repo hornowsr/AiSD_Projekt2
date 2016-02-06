@@ -131,6 +131,17 @@ public class OknoRysuj extends javax.swing.JPanel {
         g.setColor(Color.green);
         g.drawLine(x1, y1, x2, y2);
     }
+    
+    public void zaznaczDroge(int skad, int dokad) {
+        int x1, x2, y1, y2;
+        x1 = wyznaczX(skad) + 5;
+        y1 = wyznaczY(skad) + 5;
+        x2 = wyznaczX(dokad) + 5;
+        y2 = wyznaczY(dokad) + 5;
+        Graphics g = getGraphics();
+        g.setColor(Color.blue);
+        g.drawLine(x1, y1, x2, y2);
+    }
 
     private void zaznaczKierunek(int skad, int dokad) {
         int x1, x2, y1, y2;
