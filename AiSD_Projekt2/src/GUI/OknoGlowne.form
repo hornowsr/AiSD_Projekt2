@@ -33,7 +33,7 @@
                   <Component id="przyciskRysowania" alignment="1" pref="120" max="32767" attributes="0"/>
                   <Component id="poleDokad" alignment="1" max="32767" attributes="0"/>
                   <Component id="poleSkad" alignment="0" max="32767" attributes="0"/>
-                  <Component id="przyciskLicz" alignment="0" max="32767" attributes="0"/>
+                  <Component id="przyciskWyznaczTrase" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -45,15 +45,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="przyciskRysowania" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="przyciskGeneracjiDanych" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="przyciskRysowania" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="poleSkad" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="poleDokad" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="przyciskLicz" min="-2" max="-2" attributes="0"/>
+                      <Component id="przyciskWyznaczTrase" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="panelRysuj" max="32767" attributes="0"/>
@@ -95,13 +95,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskGeneracjiDanychActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="przyciskLicz">
+    <Component class="javax.swing.JButton" name="przyciskWyznaczTrase">
       <Properties>
         <Property name="text" type="java.lang.String" value="Wyznacz Tras&#x119;"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskLiczActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="przyciskWyznaczTraseActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="poleSkad">

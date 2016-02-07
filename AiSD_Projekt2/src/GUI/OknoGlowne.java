@@ -45,7 +45,7 @@ public class OknoGlowne extends javax.swing.JFrame {
         panelRysuj = new GUI.OknoRysuj();
         przyciskRysowania = new javax.swing.JButton();
         przyciskGeneracjiDanych = new javax.swing.JButton();
-        przyciskLicz = new javax.swing.JButton();
+        przyciskWyznaczTrase = new javax.swing.JButton();
         poleSkad = new javax.swing.JTextField();
         poleDokad = new javax.swing.JTextField();
 
@@ -77,11 +77,10 @@ public class OknoGlowne extends javax.swing.JFrame {
             }
         });
 
-        przyciskLicz.setText("Wyznacz Trasę");
-        przyciskLicz.setEnabled(false);
-        przyciskLicz.addActionListener(new java.awt.event.ActionListener() {
+        przyciskWyznaczTrase.setText("Wyznacz Trasę");
+        przyciskWyznaczTrase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                przyciskLiczActionPerformed(evt);
+                przyciskWyznaczTraseActionPerformed(evt);
             }
         });
 
@@ -117,7 +116,7 @@ public class OknoGlowne extends javax.swing.JFrame {
                     .addComponent(przyciskRysowania, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(poleDokad, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(poleSkad)
-                    .addComponent(przyciskLicz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(przyciskWyznaczTrase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,15 +125,15 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(przyciskRysowania)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(przyciskGeneracjiDanych)
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(przyciskRysowania)
+                        .addGap(23, 23, 23)
                         .addComponent(poleSkad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(poleDokad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(przyciskLicz)
+                        .addComponent(przyciskWyznaczTrase)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -144,8 +143,9 @@ public class OknoGlowne extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void przyciskRysowaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskRysowaniaActionPerformed
-        panelRysuj.rysuj(baza);
-        przyciskLicz.setEnabled(true);
+        if (baza.getN() > 0) {
+            panelRysuj.rysuj(baza);
+        }
     }//GEN-LAST:event_przyciskRysowaniaActionPerformed
 
     private void przyciskGeneracjiDanychActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskGeneracjiDanychActionPerformed
@@ -153,33 +153,38 @@ public class OknoGlowne extends javax.swing.JFrame {
     }//GEN-LAST:event_przyciskGeneracjiDanychActionPerformed
 
     public int wynik[];
-    private void przyciskLiczActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskLiczActionPerformed
+    private void przyciskWyznaczTraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskWyznaczTraseActionPerformed
+        if (baza.getN() < 1) {
+            return;
+        }
+
+        int poczatek = baza.znajdzMiasto(poleSkad.getText());
+        int trasa = baza.znajdzMiasto(poleDokad.getText());
+
+        if (poczatek < 0 || trasa < 0) {
+            if (poczatek < 0) {
+                poleSkad.setText("Błąd");
+            }
+            if (trasa < 0) {
+                poleDokad.setText("Błąd");
+            }
+            return;
+        }
+
         wynik = new int[baza.getN()];
         Dijkstra algo = new Dijkstra();
-
-        int poczatek = Integer.parseInt(poleSkad.getText());
-
         wynik = algo.Dijktra(baza, poczatek);
 
-        algo.Czas(wynik, baza);
-
-        int trasa = Integer.parseInt(poleDokad.getText());
-        while (trasa != 0) {
+        while (trasa != -1) {
             int stara = trasa;
             trasa = wynik[stara];
-            if (trasa != 0) {
+            if (trasa != -1) {
                 this.panelRysuj.zaznaczDroge(stara, trasa);
             } else {
                 this.panelRysuj.zaznaczDroge(stara, poczatek);
             }
         }
-
-        Miasto pom;
-        pom = baza.getMiasto(0);
-        baza.getMiasta()[0] = baza.getMiasta()[poczatek];
-        baza.getMiasta()[poczatek] = pom;
-
-    }//GEN-LAST:event_przyciskLiczActionPerformed
+    }//GEN-LAST:event_przyciskWyznaczTraseActionPerformed
 
     private void poleSkadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poleSkadActionPerformed
         // TODO add your handling code here:
@@ -199,7 +204,7 @@ public class OknoGlowne extends javax.swing.JFrame {
     private javax.swing.JTextField poleDokad;
     private javax.swing.JTextField poleSkad;
     private javax.swing.JButton przyciskGeneracjiDanych;
-    private javax.swing.JButton przyciskLicz;
     private javax.swing.JButton przyciskRysowania;
+    private javax.swing.JButton przyciskWyznaczTrase;
     // End of variables declaration//GEN-END:variables
 }
