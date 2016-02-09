@@ -48,6 +48,9 @@ public class OknoGlowne extends javax.swing.JFrame {
         przyciskWyznaczTrase = new javax.swing.JButton();
         poleSkad = new javax.swing.JTextField();
         poleDokad = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AiSD Projekt 2");
@@ -103,6 +106,12 @@ public class OknoGlowne extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Wykonali:");
+
+        jLabel2.setText("Grzegorz Kuźniarski");
+
+        jLabel3.setText("Rafał Hornowski");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,12 +120,16 @@ public class OknoGlowne extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(przyciskRysowania, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(poleDokad, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(poleSkad)
-                    .addComponent(przyciskWyznaczTrase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(przyciskGeneracjiDanych, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                        .addComponent(przyciskRysowania, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                        .addComponent(poleDokad, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(poleSkad)
+                        .addComponent(przyciskWyznaczTrase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,7 +147,12 @@ public class OknoGlowne extends javax.swing.JFrame {
                         .addComponent(poleDokad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(przyciskWyznaczTrase)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
                     .addComponent(panelRysuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -154,6 +172,8 @@ public class OknoGlowne extends javax.swing.JFrame {
 
     public int wynik[];
     private void przyciskWyznaczTraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przyciskWyznaczTraseActionPerformed
+        przyciskRysowania.doClick();
+        
         if (baza.getN() < 1) {
             return;
         }
@@ -200,6 +220,9 @@ public class OknoGlowne extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private GUI.OknoRysuj panelRysuj;
     private javax.swing.JTextField poleDokad;
     private javax.swing.JTextField poleSkad;
